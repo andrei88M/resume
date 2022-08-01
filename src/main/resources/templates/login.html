@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<!--/*@thymesVar id="user" type="com.example.demo.model.Client"*/-->
+    <form th:action="@{/login}" th:method="POST">
+        <label for="login">login</label><br>
+        <input type="text" id="login" th:name="username"><br>
+        <label for="password">password</label><br>
+        <input type="password" id="password" th:name="password"><br>
+        <button type="submit">login</button>
+    </form>
+</body>
+</html>
