@@ -3,6 +3,7 @@ package com.example.resume.controller;
 import com.example.resume.model.Profile;
 import com.example.resume.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,8 @@ public class ViewProfilesController {
         this.profileService = profileService;
     }
 
+
+    @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/profiles")
     public String viewProfiles(Principal principal, Model model) {
         String username = principal.getName();
