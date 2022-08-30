@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>profiles</title>
+</head>
+<body>
+    <a th:href="@{/profiles/create-profile}" th:value="create">create</a>
+    <div th:each="profile:${profiles}">
+        <!--/*@thymesVar id="profile" type="com.example.resume.model.Profile"*/-->
+        <a th:href="@{/profiles/{id}(id=${profile.getId()})}" th:text="${profile.getProfileName()}">name</a>
+        <form th:method="GET" th:action="@{/profiles/{id}/edit(id=${profile.id})}">
+            <button type="submit">edit</button>
+        </form>
+        <form th:method="POST" th:action="@{/profiles/{id}/delete(id=${profile.id})}">
+            <button type="submit">delete</button>
+        </form>
+    </div>
+</body>
+</html>

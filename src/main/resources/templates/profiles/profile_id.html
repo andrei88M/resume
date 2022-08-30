@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>profile</title>
+</head>
+<body>
+    <!--/*@thymesVar id="profile" type="com.example.resume.model.Profile"*/-->
+    <div th:text="${profile.profileName}">profile name</div>
+    <div th:text="${profile.status}">status</div>
+    <div th:each="cell:${profile.cells}">
+        <div th:text="${cell.cellName}">name</div>
+        <div th:text="${cell.text}">text</div>
+    </div>
+</body>
+</html>

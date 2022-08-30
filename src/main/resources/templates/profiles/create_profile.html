@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>create</title>
+</head>
+<body>
+
+<!--/*@thymesVar id="profile" type="com.example.resume.model.Profile"*/-->
+<form th:method="POST" th:action="@{/profiles/create-profile}" th:object="${profile}">
+
+    <label>
+        <input type="text" th:placeholder="*{profileName}" th:field="*{profileName}">
+    </label>
+
+    <div th:each="st : ${T(com.example.resume.model.Status).values()}">
+        <div>
+            <input type="radio" th:field="*{status}" th:value="${st}">
+            <label th:for="${#ids.prev('status')}" th:text="${st}">status</label>
+        </div>
+    </div>
+    <div th:each="c:*{cells}">
+        <div th:text="${c.cellName}"></div>
+        <div th:text="${c.text}"></div>
+    </div>
+    <button type="submit">submit</button>
+</form>
+
+<!--/*@thymesVar id="cells" type="com.example.resume.model.Cell"*/-->
+
+
+<!--/*@thymesVar id="cell" type="com.example.resume.model.Cell"*/-->
+<form th:method="POST" th:action="@{/profiles/create-cell}" th:object="${cell}">
+    <input type="text" th:field="*{cellName}">
+    <input type="text" th:field="*{text}">
+    <input type="radio" id="1" value="true" th:field="*{type}">
+    <label for="1">title type</label>
+    <input type="radio" id="2" value="false" th:field="*{type}">
+    <label for="2">rest type</label>
+
+    <button type="submit">+</button>
+</form>
+</body>
+</html>

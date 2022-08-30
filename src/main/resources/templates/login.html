@@ -1,17 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>login</title>
 </head>
 <body>
-<!--/*@thymesVar id="user" type="com.example.demo.model.Client"*/-->
-    <form th:action="@{/login}" th:method="POST">
-        <label for="login">login</label><br>
-        <input type="text" id="login" th:name="username"><br>
-        <label for="password">password</label><br>
-        <input type="password" id="password" th:name="password"><br>
+    <!--/*@thymesVar id="user" type="com.example.resume.model.User"*/-->
+    <form th:method="POST" th:action="@{/login}" >
+        <label>
+            <input type="text" th:name="username">
+        </label>
+        <br>
+        <label>
+            <input type="password" th:name="password">
+        </label>
+        <br>
         <button type="submit">login</button>
     </form>
+    <a th:href="@{/registration}" th:value="registration">reg</a>
 </body>
 </html>

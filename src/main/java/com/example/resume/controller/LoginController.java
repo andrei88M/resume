@@ -24,13 +24,15 @@ public class LoginController {
     }
 
     @PostMapping("/registration")
-    public String registrationUser(@ModelAttribute("user") User user,
-                                   @RequestParam("password2") String password2) {
+    public String registrationUser(@ModelAttribute("user") User user) {
 
-        if (!user.getPassword().equals(password2)){
-            return "/registration";
+        if (!user.getPassword().equals(user.getPassword2())){
+            return "redirect:/registration";
+        }else if (userService.existsUserByUsername(user.getUsername())){
+            return "redirect:/registration";
         }
         userService.save(user);
+        user.setPassword("");
         return "redirect:/login";
     }
 
