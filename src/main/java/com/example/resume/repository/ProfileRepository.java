@@ -17,4 +17,6 @@ public interface ProfileRepository extends CrudRepository<Profile, Long> {
     List<Profile> findAllByUser_Username(String username);
 
     void deleteById(Long id);
+
+    List<Profile> findAllByUser_Id(Long id);
 }

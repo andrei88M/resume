@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>profiles</title>
+</head>
+<body>
+    <!--/*@thymesVar id="profile" type="com.example.resume.model.Profile"*/-->
+    <div th:each="profile:${profiles}">
+        <div th:text="${profile.profileName}">name</div>
+        <form th:method="POST"
+              th:action="@{/admin/{user_id}/profiles/{profile_id}/delete(user_id=${profile.user.id},profile_id=${profile.id})}">
+            <button type="submit">delete</button>
+        </form>
+    </div>
+</body>
+</html>

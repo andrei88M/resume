@@ -3,7 +3,6 @@ package com.example.resume.service;
 import com.example.resume.model.Profile;
 
 import java.util.List;
-import java.util.Set;
 
 public interface ProfileService {
 
@@ -12,6 +11,8 @@ public interface ProfileService {
     Profile save(Profile profile);
 
     List<Profile> findAllByUsername(String username);
+
+    List<Profile> findAllByUser_id(Long id);
 
     void delete(Profile profile);
 
