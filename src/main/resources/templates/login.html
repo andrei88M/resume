@@ -7,13 +7,14 @@
 <body>
     <!--/*@thymesVar id="user" type="com.example.resume.model.User"*/-->
     <form th:method="POST" th:action="@{/login}" >
-        <label>
-            <input type="text" th:name="username">
-        </label>
-        <br>
-        <label>
-            <input type="password" th:name="password">
-        </label>
+        <div style="color: red" th:if="${param.error}">
+            Invalid username and password.
+        </div>
+        <div style="color: red" th:if="${param.logout}">
+            You have been logged out.
+        </div>
+        <div><label> User Name : <input type="text" name="username"/> </label></div>
+        <div><label> Password: <input type="password" name="password"/> </label>
         <br>
         <button type="submit">login</button>
     </form>
