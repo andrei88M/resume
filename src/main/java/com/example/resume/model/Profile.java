@@ -3,6 +3,7 @@ package com.example.resume.model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class Profile {
     private Long id;
 
     @Column(name = "name")
+    @NotEmpty(message = "Write your name")
     private String profileName;
 
     @Column(name = "status")

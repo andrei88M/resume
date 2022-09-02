@@ -3,6 +3,7 @@ package com.example.resume.model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @NoArgsConstructor
@@ -10,7 +11,6 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString(of = {"id", "cellName", "text", "type"})
-@EqualsAndHashCode(of = {"id"})
 @Builder
 @Table(name = "cells")
 public class Cell {
@@ -22,9 +22,11 @@ public class Cell {
     private Long id;
 
     @Column(name = "name")
+    @NotEmpty
     private String cellName;
 
     @Column(name = "text")
+    @NotEmpty
     private String text;
 
     @Column(name = "type")
