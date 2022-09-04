@@ -1,6 +1,7 @@
 package com.example.resume.controller;
 
 import com.example.resume.model.Profile;
+import com.example.resume.model.Status;
 import com.example.resume.service.ProfileService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -34,6 +35,15 @@ public class ViewProfilesController {
     public String viewProfile(@PathVariable("id") Long id, Model model) {
         Profile profile = profileService.findById(id);
         model.addAttribute("profile", profile);
+        if (profile.getStatus().equals(Status.PRIVAT)) {
+            return "forward:/profiles/privat-profile";
+        }
+        return "profiles/profile_id";
+    }
+
+    @PreAuthorize("hasAnyAuthority('USER')")
+    @GetMapping("/profiles/privat-profile")
+    public String viewProfile() {
         return "profiles/profile_id";
     }
 }
