@@ -3,6 +3,7 @@ package com.example.resume.controller;
 import com.example.resume.model.Profile;
 import com.example.resume.model.Status;
 import com.example.resume.service.ProfileService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,14 +14,10 @@ import java.security.Principal;
 import java.util.List;
 
 @Controller
+@RequiredArgsConstructor
 public class ViewProfilesController {
 
     private final ProfileService profileService;
-
-    public ViewProfilesController(ProfileService profileService) {
-        this.profileService = profileService;
-    }
-
 
     @PreAuthorize("hasAuthority('USER')")
     @GetMapping("/profiles")

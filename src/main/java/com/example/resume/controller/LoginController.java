@@ -2,6 +2,7 @@ package com.example.resume.controller;
 
 import com.example.resume.model.User;
 import com.example.resume.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,13 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.validation.Valid;
 
 @Controller
+@RequiredArgsConstructor
 public class LoginController {
 
     private final UserService userService;
-
-    public LoginController(UserService userService) {
-        this.userService = userService;
-    }
 
     @GetMapping("/registration")
     public String registration(@ModelAttribute("user") User user) {

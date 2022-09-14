@@ -6,6 +6,7 @@ import com.example.resume.model.User;
 import com.example.resume.service.CellService;
 import com.example.resume.service.ProfileService;
 import com.example.resume.service.UserService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -23,6 +25,7 @@ import java.util.List;
 @Controller
 @PreAuthorize("hasAuthority('USER')")
 @Slf4j
+@RequiredArgsConstructor
 public class CreateProfileController {
 
     private final ProfileService profileService;
@@ -32,12 +35,6 @@ public class CreateProfileController {
     private final UserService userService;
 
     private Profile tempProfile;
-
-    public CreateProfileController(ProfileService profileService, CellService cellService, UserService userService) {
-        this.profileService = profileService;
-        this.cellService = cellService;
-        this.userService = userService;
-    }
 
     @GetMapping("/profiles/create-profile")
     public String create(@ModelAttribute("cell") Cell cell, Model model) {
@@ -51,7 +48,8 @@ public class CreateProfileController {
     }
 
     @PostMapping("/profiles/create-profile")
-    public String createProfile(@ModelAttribute("profile") @Valid Profile profile,
+    public String createProfile(MultipartFile file,
+                                @ModelAttribute("profile") @Valid Profile profile,
                                 BindingResult bindingResult,
                                 Principal principal,
                                 Model model) {

@@ -3,21 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>profiles</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
+
 <body>
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
-</form>
-<a th:href="@{/profiles/create-profile}" th:value="create">create</a>
-<div th:each="profile:${profiles}">
-    <!--/*@thymesVar id="profile" type="com.example.resume.model.Profile"*/-->
-    <a th:href="@{/profiles/{id}(id=${profile.getId()})}" th:text="${profile.getProfileName()}">name</a>
-    <form th:method="GET" th:action="@{/profiles/{id}/edit(id=${profile.id})}">
-        <button type="submit">edit</button>
-    </form>
-    <form th:method="POST" th:action="@{/profiles/{id}/delete(id=${profile.id})}">
-        <button type="submit">delete</button>
-    </form>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+<div class="container mt-5">
+    <header th:insert="navbar/navbar_user :: user"></header>
+
+    <div th:each="profile:${profiles}">
+
+        <!--/*@thymesVar id="profile" type="com.example.resume.model.Profile"*/-->
+        <a th:href="@{/profiles/{id}(id=${profile.getId()})}" th:text="${profile.getProfileName()}">name</a>
+        <form th:method="GET" th:action="@{/profiles/{id}/edit(id=${profile.id})}">
+            <button type="submit">edit</button>
+        </form>
+        <form th:method="POST" th:action="@{/profiles/{id}/delete(id=${profile.id})}">
+            <button type="submit">delete</button>
+        </form>
+    </div>
 </div>
 </body>
 </html>

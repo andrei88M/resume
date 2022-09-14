@@ -1,7 +1,10 @@
 package com.example.resume.service;
 
+import com.example.resume.model.Image;
 import com.example.resume.model.Profile;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface ProfileService {
@@ -9,6 +12,10 @@ public interface ProfileService {
     Profile findById(Long id);
 
     Profile save(Profile profile);
+
+    Profile save(Profile profile, Image image);
+
+    Profile save(Profile profile, MultipartFile file) throws IOException;
 
     List<Profile> findAllByUsername(String username);
 

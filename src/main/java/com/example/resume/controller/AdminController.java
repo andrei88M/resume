@@ -4,6 +4,7 @@ import com.example.resume.model.Profile;
 import com.example.resume.model.User;
 import com.example.resume.service.ProfileService;
 import com.example.resume.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -16,16 +17,12 @@ import java.util.List;
 
 @Controller
 @PreAuthorize("hasAuthority('ADMIN')")
+@RequiredArgsConstructor
 public class AdminController {
 
     private final UserService userService;
 
     private final ProfileService profileService;
-
-    public AdminController(UserService userService, ProfileService profileService) {
-        this.userService = userService;
-        this.profileService = profileService;
-    }
 
     @GetMapping("/admin")
     public String admin(Model model) {

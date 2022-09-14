@@ -37,4 +37,7 @@ public class Profile {
 
     @OneToMany(mappedBy = "profile", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Cell> cells = new ArrayList<>();
+
+    @OneToOne(mappedBy = "profile", cascade = CascadeType.ALL)
+    private Image image;
 }

@@ -5,6 +5,7 @@ import com.example.resume.model.Profile;
 import com.example.resume.service.CellService;
 import com.example.resume.service.ProfileService;
 import com.example.resume.service.UserService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,6 +20,7 @@ import java.security.Principal;
 
 @Controller
 @Slf4j
+@RequiredArgsConstructor
 @PreAuthorize("hasAuthority('USER')")
 public class EditProfileController {
 
@@ -27,12 +29,6 @@ public class EditProfileController {
     private final UserService userService;
 
     private final CellService cellService;
-
-    public EditProfileController(ProfileService profileService, UserService userService, CellService cellService) {
-        this.profileService = profileService;
-        this.userService = userService;
-        this.cellService = cellService;
-    }
 
     @GetMapping("/profiles/{id}/edit")
     public String edit(@PathVariable("id") Long id,

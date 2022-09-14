@@ -2,28 +2,46 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>registration</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
+
 <body>
-<!--/*@thymesVar id="user" type="com.example.resume.model.User"*/-->
-<form th:method="POST" th:action="@{/registration}" th:object="${user}">
-    <label for="username">Enter login</label>
-    <input type="text" th:field="*{username}" id="username">
-    <div style="color: red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">error</div>
-    <div style="color: red" th:text="${login}"></div>
-    <br>
-    <label for="password">Enter password</label>
-    <input type="password" th:field="*{password}" id="password">
-    <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">error</div>
-    <div style="color: red" th:text="${passwords_equals}"></div>
-    <br>
-    <label for="password2">Enter password2</label>
-    <input type="password" th:field="*{password2}" id="password2">
-    <div style="color: red" th:if="${#fields.hasErrors('password2')}" th:errors="*{password2}">error</div>
-    <div style="color: red" th:text="${passwords_equals}"></div>
-    <br>
-    <button type="submit">submit</button>
-</form>
-<a th:href="@{/login}" th:text="login">login</a>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+
+<div class="container mt-5">
+    <header th:insert="navbar/navbar_guest :: quest"></header>
+
+    <!--/*@thymesVar id="user" type="com.example.resume.model.User"*/-->
+    <form th:method="POST" th:action="@{/registration}" th:object="${user}">
+        <div style="color: red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">error</div>
+        <div style="color: red" th:text="${login}"></div>
+        <input type="text" th:field="*{username}" id="username" >
+        <label for="username" class="form-label">Enter login</label>
+
+        <br>
+
+        <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">error</div>
+        <div style="color: red" th:text="${passwords_equals}"></div>
+        <input type="password" th:field="*{password}" id="password">
+        <label for="password" class="form-label">Enter password</label>
+
+        <br>
+
+        <div style="color: red" th:if="${#fields.hasErrors('password2')}" th:errors="*{password2}">error</div>
+        <div style="color: red" th:text="${passwords_equals}"></div>
+        <input type="password" th:field="*{password2}" id="password2" >
+        <label for="password2" class="form-label">Enter password2</label>
+
+        <br>
+
+        <button type="submit">submit</button>
+    </form>
+    <a th:href="@{/login}" th:text="login">login</a>
+</div>
 </body>
 </html>

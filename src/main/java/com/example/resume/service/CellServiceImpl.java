@@ -2,18 +2,16 @@ package com.example.resume.service;
 
 import com.example.resume.model.Cell;
 import com.example.resume.repository.CellRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class CellServiceImpl implements CellService {
 
     private final CellRepository cellRepository;
-
-    public CellServiceImpl(CellRepository cellRepository) {
-        this.cellRepository = cellRepository;
-    }
 
     @Override
     public List<Cell> findAllByProfile_Id(Long id) {
