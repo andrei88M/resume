@@ -35,6 +35,13 @@ class ProfileServiceImplTest {
         log.info("profile_id " + profile.getId() + " image_id " + profile.getImage().getId());
     }
 
+    @Test
+    void findById(){
+        Profile profile = profileService.save(createTestProfile());
+        profile = profileService.findById(profile.getId());
+        log.info(profile.toString());
+    }
+
     Profile createTestProfile() {
         return Profile.builder()
                 .profileName("profile")

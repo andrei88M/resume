@@ -36,6 +36,7 @@ public class Image {
     private byte[] bytes;
 
     @OneToOne
+    @JoinColumn(unique = true)
     private Profile profile;
 
 }

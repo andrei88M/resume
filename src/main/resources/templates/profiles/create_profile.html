@@ -16,10 +16,8 @@
     <header th:insert="navbar/navbar_user :: user"></header>
 
     <!--/*@thymesVar id="profile" type="com.example.resume.model.Profile"*/-->
-    <form th:method="POST" th:action="@{/profiles/create-profile}" th:object="${profile}" enctype="multipart/form-data">
+    <form th:method="POST" th:action="@{/profiles/create-profile}" th:object="${profile}" >
 
-        <label for="file">photo</label>
-        <input type="file" th:name="file" id="file"><br>
         <label for="profileName">profile name</label>
         <input type="text" th:placeholder="*{profileName}" th:field="*{profileName}" id="profileName">
         <div style="color: red" th:if="${#fields.hasErrors('profileName')}" th:errors="*{profileName}">error</div>
@@ -31,28 +29,7 @@
             </div>
         </div>
 
-        <div th:each="c:*{cells}">
-            <div th:text="${c.cellName}"></div>
-            <div th:text="${c.text}"></div>
-        </div>
         <button type="submit">submit</button>
-    </form>
-
-    <!--/*@thymesVar id="cells" type="com.example.resume.model.Cell"*/-->
-
-
-    <!--/*@thymesVar id="cell" type="com.example.resume.model.Cell"*/-->
-    <form th:method="POST" th:action="@{/profiles/create-cell}" th:object="${cell}">
-        <input type="text" th:field="*{cellName}">
-        <div style="color: red" th:if="${#fields.hasErrors('cellName')}" th:errors="*{cellName}">error</div>
-        <input type="text" th:field="*{text}">
-        <div style="color: red" th:if="${#fields.hasErrors('text')}" th:errors="*{text}">error</div>
-        <input type="radio" id="1" value="true" th:field="*{type}">
-        <label for="1">title type</label>
-        <input type="radio" id="2" value="false" th:field="*{type}">
-        <label for="2">rest type</label>
-
-        <button type="submit">+</button>
     </form>
 </div>
 </body>

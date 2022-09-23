@@ -33,6 +33,10 @@ public class ProfileServiceImpl implements ProfileService {
     @Override
     public Profile save(Profile profile, Image image) {
         Profile profile1 = profileRepository.save(profile);
+        if (imageRepository.existsByProfile_Id(profile1.getId())) {
+            Image image1 = imageRepository.findByProfile_Id(profile1.getId());
+            imageRepository.delete(image1);
+        }
         image.setProfile(profile);
         Image image1 = imageRepository.save(image);
         profile1.setImage(image1);
@@ -41,6 +45,9 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public Profile save(Profile profile, MultipartFile file) throws IOException {
+        if (file.isEmpty()) {
+            return save(profile);
+        }
         Image image = new Image();
         image.setFileName(file.getOriginalFilename());
         image.setContentType(file.getContentType());

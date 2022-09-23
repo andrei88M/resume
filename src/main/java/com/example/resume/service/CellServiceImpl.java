@@ -32,4 +32,9 @@ public class CellServiceImpl implements CellService {
     public Cell findById(Long cell_id) {
         return cellRepository.findById(cell_id).orElseThrow();
     }
+
+    @Override
+    public void delete(Long id) {
+        cellRepository.deleteById(id);
+    }
 }

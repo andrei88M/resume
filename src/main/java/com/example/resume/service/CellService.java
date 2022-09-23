@@ -13,4 +13,6 @@ public interface CellService {
     Cell save(Cell cell);
 
     Cell findById(Long cell_id);
+
+    void delete(Long id);
 }
