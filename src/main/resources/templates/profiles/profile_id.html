@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>profile</title>
@@ -13,16 +14,41 @@
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
 
-<div class="container mt-5">
-    <header th:insert="navbar/navbar_user :: user"></header>
+<div class="container text-start mt-5">
+    <div sec:authorize="hasAuthority('USER')">
+        <header th:insert="navbar/navbar_user :: user"></header>
+    </div>
+    <div class="row">
+        <div class="col">
+            <img th:src="@{'/profile/'+${profile.id}+'/img'}" th:if="${profile.image}" alt="photo" height="100px">
+        </div>
+        <div class="col-10">
+            <div th:text="${profile.profileName}">profile name</div>
 
-    <!--/*@thymesVar id="profile" type="com.example.resume.model.Profile"*/-->
-    <div th:text="${profile.profileName}">profile name</div>
-    <div th:text="${profile.status}">status</div>
-    <div th:each="cell:${profile.cells}">
-        <div th:text="${cell.cellName}">name</div>
-        <div th:text="${cell.text}">text</div>
+            <div th:each="cell:${profile.cells}">
+                <!--/*@thymesVar id="cell" type="com.example.resume.model.Cell"*/-->
+                <div th:if="${cell.type==true}">
+                    <div th:text="${cell.cellName}">name</div>
+                    <div th:text="${cell.text}">text</div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<div th:each="c:${profile.cells}">
+    <div th:if="${c.type==false}">
+        <div class="container text-start mt-5">
+            <nav class="navbar bg-light">
+                <div class="container-fluid">
+                    <span class="navbar-brand mb-0 h1" th:text="${c.cellName}"></span>
+                </div>
+            </nav>
+            <div th:text="${c.text}">text</div>
+
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
