@@ -12,27 +12,28 @@
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
 
-<div class="container mt-5 bg-light">
-    <header th:insert="navbar/navbar_guest :: quest"></header>
+<div class="container p-2 mt-5 bg-light">
 
-    <!--/*@thymesVar id="user" type="com.example.resume.model.User"*/-->
-    <form th:method="POST" th:action="@{/login}">
-        <div style="color: red" th:if="${param.error}">
-            Invalid username and password.
-        </div>
-        <div style="color: red" th:if="${param.logout}">
-            You have been logged out.
-        </div>
-        <input type="text" name="username" id="text"/>
-        <label for="text" class="form-label">Username:</label>
-        <br>
-        <input type="password" name="password" id="password"/>
-        <label for="password" class="form-label"> Password:</label>
-        <br>
-        <button type="submit">login</button>
-    </form>
-    <a th:href="@{/registration}" th:value="registration">reg</a>
+    <header th:insert="include/navbar :: guest"></header>
 
+    <div class="row gx-2 mt-5">
+        <div class="col shadow-sm mx-2 bg-light ">
+            <header th:insert="include/form :: login"></header>
+        </div>
+
+        <div class="col-8 shadow-sm  mx-2 bg-light">
+            <header th:insert="include/info :: guest"></header>
+        </div>
+
+        <div class="col shadow-sm mx-2 bg-light">
+            <header th:insert="include/comment :: comment"></header>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col p-2">
+            примеры резюме
+        </div>
+    </div>
 </div>
 </body>
 </html>

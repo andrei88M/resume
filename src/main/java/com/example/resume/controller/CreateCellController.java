@@ -26,7 +26,7 @@ public class CreateCellController {
     private String createCell(@PathVariable("id") Long id, @ModelAttribute Cell cell) {
         log.info("id " + id);
         Profile profile = profileService.findById(id);
-        log.info("profile " + profile);
+        log.info("profile " + profile + " cell " + cell);
         cell.setProfile(profile);
         cellService.save(cell);
         return "redirect:/profiles/" + id + "/edit";

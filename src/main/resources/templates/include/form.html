@@ -1,0 +1,49 @@
+<div th:fragment="login">
+    <form  th:method="POST" th:action="@{/login}">
+        <div style="color: red" th:if="${param.error}">
+            Invalid username and password.
+        </div>
+        <div style="color: red" th:if="${param.logout}">
+            You have been logged out.
+        </div>
+        <input type="text" name="username" placeholder="login" id="text"/>
+        <label for="text" class="form-label"></label>
+        <br>
+        <input type="password" name="password" placeholder="password" id="password"/>
+        <label for="password" class="form-label"></label>
+        <br>
+        <button type="submit">login</button>
+        <a href="#">забыли пароль?</a>
+    </form>
+    <div>google</div>
+    <a th:href="@{/registration}">регистрация</a>
+
+</div>
+
+<div th:fragment="registration">
+    <form th:method="POST" th:action="@{/registration}" th:object="${user}">
+        <div style="color: red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">error</div>
+        <div style="color: red" th:text="${login}"></div>
+        <input type="text" th:field="*{username}" id="username" >
+        <label for="username" class="form-label">Enter login</label>
+
+        <br>
+
+        <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">error</div>
+        <div style="color: red" th:text="${passwords_equals}"></div>
+        <input type="password" th:field="*{password}" id="password">
+        <label for="password" class="form-label">Enter password</label>
+
+        <br>
+
+        <div style="color: red" th:if="${#fields.hasErrors('password2')}" th:errors="*{password2}">error</div>
+        <div style="color: red" th:text="${passwords_equals}"></div>
+        <input type="password" th:field="*{password2}" id="password2" >
+        <label for="password2" class="form-label">Enter password2</label>
+
+        <br>
+
+        <button type="submit">submit</button>
+    </form>
+
+</div>

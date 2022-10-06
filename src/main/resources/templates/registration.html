@@ -13,35 +13,28 @@
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
 
-<div class="container mt-5">
-    <header th:insert="navbar/navbar_guest :: quest"></header>
+    <div class="container p-2 mt-5 bg-light">
 
-    <!--/*@thymesVar id="user" type="com.example.resume.model.User"*/-->
-    <form th:method="POST" th:action="@{/registration}" th:object="${user}">
-        <div style="color: red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">error</div>
-        <div style="color: red" th:text="${login}"></div>
-        <input type="text" th:field="*{username}" id="username" >
-        <label for="username" class="form-label">Enter login</label>
+        <header th:insert="include/navbar :: guest"></header>
 
-        <br>
+        <div class="row gx-2 mt-5">
+            <div class="col shadow-sm mx-2 bg-light ">
+                <header th:insert="include/form :: login"></header>
+            </div>
 
-        <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">error</div>
-        <div style="color: red" th:text="${passwords_equals}"></div>
-        <input type="password" th:field="*{password}" id="password">
-        <label for="password" class="form-label">Enter password</label>
+            <div class="col-8 shadow-sm  mx-2 bg-light">
+                <header th:insert="include/form :: registration"></header>
+            </div>
 
-        <br>
-
-        <div style="color: red" th:if="${#fields.hasErrors('password2')}" th:errors="*{password2}">error</div>
-        <div style="color: red" th:text="${passwords_equals}"></div>
-        <input type="password" th:field="*{password2}" id="password2" >
-        <label for="password2" class="form-label">Enter password2</label>
-
-        <br>
-
-        <button type="submit">submit</button>
-    </form>
-    <a th:href="@{/login}" th:text="login">login</a>
-</div>
+            <div class="col shadow-sm mx-2 bg-light">
+                <header th:insert="include/comment :: comment"></header>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col p-2">
+                примеры резюме
+            </div>
+        </div>
+    </div>
 </body>
 </html>

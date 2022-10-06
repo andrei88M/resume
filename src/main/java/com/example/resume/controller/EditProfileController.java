@@ -34,6 +34,7 @@ public class EditProfileController {
                        @ModelAttribute("cell") Cell cell,
                        Model model) {
         Profile profile = profileService.findById(id);
+        log.info("profile_cell " + profile.getCells().size());
         model.addAttribute("profile", profile);
 
         return "profiles/profile_id/edit_profile";

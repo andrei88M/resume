@@ -36,6 +36,7 @@
             </form>
         </div>
         <div class="col-6">
+            <!--/*@thymesVar id="profile" type="com.example.resume.model.Profile"*/-->
             <div th:each="c:${profile.cells}">
 
                 <!--/*@thymesVar id="c" type="com.example.resume.model.Cell"*/-->
@@ -47,6 +48,7 @@
                         <input type="hidden" th:value="${c.type}" th:name="type">
                         <button type="submit">edit cell</button>
                     </form>
+                    <!--/*@thymesVar id="profile" type="com.example.resume.model.Profile"*/-->
                     <form th:method="POST"
                           th:action="@{/profiles/{id}/{id_cell}/delete(id=${profile.id},id_cell=${c.id})}">
                         <button type="submit">delete</button>
