@@ -47,3 +47,22 @@
     </form>
 
 </div>
+
+<div th:fragment="new_profile">
+    <!--/*@thymesVar id="profile" type="com.example.resume.model.Profile"*/-->
+    <form th:method="POST" th:action="@{/profiles}" th:object="${profile}"
+          enctype="multipart/form-data">
+
+        <label for="file">photo</label>
+        <input type="file" th:name="file" id="file"><br>
+        <label for="name">profile name</label>
+        <input type="text" th:value="*{profileName}" th:field="*{profileName}" id="name">
+        <div th:each="st : ${T(com.example.resume.model.Status).values()}">
+            <div>
+                <input type="radio" th:field="*{status}" th:value="${st}">
+                <label th:for="${#ids.prev('status')}" th:text="${st}">status</label>
+            </div>
+        </div>
+        <button type="submit">create profile</button>
+    </form>
+</div>

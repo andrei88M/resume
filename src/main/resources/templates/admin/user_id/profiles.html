@@ -8,8 +8,8 @@
     <!--/*@thymesVar id="profile" type="com.example.resume.model.Profile"*/-->
     <div th:each="profile:${profiles}">
         <div th:text="${profile.profileName}">name</div>
-        <form th:method="POST"
-              th:action="@{/admin/{user_id}/profiles/{profile_id}/delete(user_id=${profile.user.id},profile_id=${profile.id})}">
+        <form th:method="DELETE"
+              th:action="@{/admin/{user_id}/profiles/{profile_id}(user_id=${profile.user.id},profile_id=${profile.id})}">
             <button type="submit">delete</button>
         </form>
     </div>

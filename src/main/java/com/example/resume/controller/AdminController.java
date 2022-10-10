@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,13 +39,13 @@ public class AdminController {
         return "admin/user_id/profiles";
     }
 
-    @PostMapping("/admin/{user_id}/profiles/{profile_id}/delete")
+    @DeleteMapping("/admin/{user_id}/profiles/{profile_id}")
     public String deleteProfile(@PathVariable("profile_id") Long profile_id, @PathVariable("user_id") String user_id) {
         profileService.deleteById(profile_id);
         return "redirect:/admin/" + user_id + "/profiles";
     }
 
-    @PostMapping("/admin/{user_id}/delete")
+    @DeleteMapping("/admin/{user_id}")
     public String deleteUser(@PathVariable("user_id") Long user_id){
         userService.deleteById(user_id);
         return "redirect:/admin";

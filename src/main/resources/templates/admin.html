@@ -8,7 +8,7 @@
     <!--/*@thymesVar id="user" type="com.example.resume.model.User"*/-->
     <div th:each="user:${users}">
         <a th:href="@{/admin/{user_id}/profiles(user_id=${user.id})}" th:text="${user.username}">user</a>
-        <form th:method="POST" th:action="@{/admin/{user_id}/delete(user_id=${user.id})}">
+        <form th:method="DELETE" th:action="@{/admin/{user_id}(user_id=${user.id})}">
             <button type="submit">delete</button>
         </form>
     </div>

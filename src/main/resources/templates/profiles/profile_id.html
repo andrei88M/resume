@@ -16,7 +16,7 @@
 
 <div class="container text-start mt-5">
     <div sec:authorize="hasAuthority('USER')">
-        <header th:insert="navbar/navbar_user :: user"></header>
+        <header th:insert="include/navbar :: user"></header>
     </div>
     <div class="row">
         <div class="col">

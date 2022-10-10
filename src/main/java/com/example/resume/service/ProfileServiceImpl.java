@@ -2,6 +2,8 @@ package com.example.resume.service;
 
 import com.example.resume.model.Image;
 import com.example.resume.model.Profile;
+import com.example.resume.model.User;
+import com.example.resume.repository.CellRepository;
 import com.example.resume.repository.ImageRepository;
 import com.example.resume.repository.ProfileRepository;
 import com.example.resume.repository.UserRepository;
@@ -15,6 +17,8 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ProfileServiceImpl implements ProfileService {
+
+    private final UserRepository userRepository;
 
     private final ProfileRepository profileRepository;
 
@@ -75,6 +79,29 @@ public class ProfileServiceImpl implements ProfileService {
     @Override
     public void deleteById(Long id) {
         profileRepository.deleteById(id);
+    }
+
+    @Override
+    public Profile save(Profile profile, User user) {
+        profile.setProfileName("name");
+        profile.setUser(user);
+        return profileRepository.save(profile);
+    }
+
+    @Override
+    public Profile save(Profile profile, User user, MultipartFile multipartFile) throws IOException {
+        profile.setUser(user);
+        return save(profile, multipartFile);
+    }
+
+    @Override
+    public Profile save(Profile profile, String username) {
+        if (profile.getProfileName() == null || profile.getProfileName().equals("")) {
+            profile.setProfileName("name");
+        }
+        User user = userRepository.findByUsername(username);
+        profile.setUser(user);
+        return profileRepository.save(profile);
     }
 
 
